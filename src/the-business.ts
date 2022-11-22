@@ -1,17 +1,17 @@
-interface DayOfChristmas {
+export interface DayOfChristmas {
   day: string;
   link: string;
 }
 
-const daysOfChristmas: DayOfChristmas[] = [
-  { day: "first", link: "" },
-  { day: "second", link: "" },
+export const daysOfChristmas: DayOfChristmas[] = [
+  { day: "first", link: "https://www.youtube.com/embed/wKbU8B-QVZk" },
+  { day: "second", link: "https://www.youtube.com/embed/hpigjnKl7nI" },
   { day: "third", link: "" },
   { day: "fourth", link: "" },
   { day: "fifth", link: "" },
   { day: "sixth", link: "" },
   { day: "seventh", link: "" },
-  { day: "eigth", link: "" },
+  { day: "eighth", link: "" },
   { day: "ninth", link: "" },
   { day: "tenth", link: "" },
   { day: "eleventh", link: "" },
@@ -28,13 +28,21 @@ const daysOfChristmas: DayOfChristmas[] = [
   { day: "twenty-second", link: "" },
   { day: "twenty-third", link: "" },
   { day: "twenty-fourth", link: "" },
-  { day: "christmas", link: "" },
+  { day: "actual", link: "" },
 ];
 
-export default function getDayOfChristmas() {
-  const dateToCalculateWith = new Date();
+export default function getDayOfChristmas(debug?: boolean) {
+  if (debug) {
+    return {
+      dayOfChristmas: daysOfChristmas[24],
+      position: 24,
+    };
+  }
 
-  return (
-    daysOfChristmas[dateToCalculateWith.getDay() - 1] || daysOfChristmas[24]
-  );
+  const arrayPosition = new Date().getDay() - 1;
+
+  return {
+    dayOfChristmas: daysOfChristmas[arrayPosition] || daysOfChristmas[24],
+    position: arrayPosition,
+  };
 }
